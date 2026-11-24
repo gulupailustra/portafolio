@@ -17,6 +17,12 @@
     document.querySelectorAll("[data-alt-" + lang + "]").forEach(function (el) {
       el.setAttribute("alt", el.getAttribute("data-alt-" + lang));
     });
+    document.querySelectorAll("[data-aria-" + lang + "]").forEach(function (el) {
+      el.setAttribute("aria-label", el.getAttribute("data-aria-" + lang));
+    });
+    document.querySelectorAll("[data-title-" + lang + "]").forEach(function (el) {
+      el.setAttribute("title", el.getAttribute("data-title-" + lang));
+    });
     var t = document.querySelector("meta[name='title-" + lang + "']");
     if (t) document.title = t.content;
     announceCount();
@@ -287,8 +293,47 @@
     document.addEventListener("keydown", function (e) {
       if (e.key === "Escape" && root.classList.contains("menu-open")) { setMenu(false); menuBtn.focus(); }
     });
-    var wide = window.matchMedia("(min-width: 701px)");
+    var wide = window.matchMedia("(min-width: 1081px)");
     var onWide = function (e) { if (e.matches) setMenu(false); };
     if (wide.addEventListener) wide.addEventListener("change", onWide); else if (wide.addListener) wide.addListener(onWide);
+  }
+  // Animaciones en video: se mueven solas (salvo con movimiento reducido) y se pueden pausar
+  document.querySelectorAll("video[data-anim]").forEach(function (v) {
+    var btn = v.parentNode.querySelector(".anim-btn");
+    var still = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    var userPaused = still;
+    function sync() { if (btn) btn.classList.toggle("is-paused", v.paused); }
+    function tryPlay() { var p = v.play(); if (p && p.catch) p.catch(function () { sync(); }); }
+    v.addEventListener("play", sync);
+    v.addEventListener("pause", sync);
+    if (btn) btn.addEventListener("click", function () {
+      if (v.paused) { userPaused = false; tryPlay(); } else { userPaused = true; v.pause(); }
+    });
+    if ("IntersectionObserver" in window) {
+      new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) {
+          if (e.isIntersecting) { if (!userPaused) tryPlay(); }
+          else if (!v.paused) { v.pause(); }
+        });
+      }, { threshold: 0.25 }).observe(v);
+    } else if (!userPaused) { tryPlay(); }
+    sync();
+  });
+  // Modo oscuro: el botón guarda la elección; sin elección se sigue el tema del sistema
+  var THEME_KEY = "gulupa-theme";
+  var themeBtns = document.querySelectorAll(".theme-btn");
+  function applyTheme(t, save) {
+    root.setAttribute("data-theme", t);
+    themeBtns.forEach(function (b) { b.setAttribute("aria-pressed", String(t === "dark")); });
+    if (save) put("localStorage", THEME_KEY, t);
+  }
+  applyTheme(root.getAttribute("data-theme") === "dark" ? "dark" : "light", false);
+  themeBtns.forEach(function (b) {
+    b.addEventListener("click", function () { applyTheme(root.getAttribute("data-theme") === "dark" ? "light" : "dark", true); });
+  });
+  if (window.matchMedia) {
+    var sys = window.matchMedia("(prefers-color-scheme: dark)");
+    var onSys = function (e) { var saved = get("localStorage", THEME_KEY); if (saved !== "light" && saved !== "dark") applyTheme(e.matches ? "dark" : "light", false); };
+    if (sys.addEventListener) sys.addEventListener("change", onSys); else if (sys.addListener) sys.addListener(onSys);
   }
 })();

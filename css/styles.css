@@ -83,7 +83,7 @@ p { margin: 0; text-wrap: pretty; }
 .lang { display: flex; border: 1px solid var(--line); border-radius: 999px; padding: 2px; }
 .lang button { font: 600 0.72rem/1 var(--f-display); letter-spacing: 0.05em; border: 0; background: transparent; color: var(--ink-soft); padding: 0.5rem 0.62rem; border-radius: 999px; cursor: pointer; min-height: 32px; }
 .lang button[aria-pressed="true"] { background: var(--accent); color: var(--accent-ink); }
-@media (max-width: 700px) {
+@media (max-width: 1080px) {
   .top .wrap { grid-template-columns: auto minmax(0, 1fr); }
   .brand { display: none; }
   .logo { justify-self: start; }
@@ -327,10 +327,10 @@ html.at-contact .fab-mail, html.lb-open .to-top, html.lb-open .fab-mail { opacit
 @media (prefers-reduced-motion: reduce) { .to-top, .fab-mail { transition: none; } }
 .foot { padding-bottom: calc(80px + env(safe-area-inset-bottom, 0px)); }
 
-/* Menú de celular: botón de hamburguesa a la izquierda, logo al centro, idioma a la derecha */
+/* Menú compacto (celular y tabletas, hasta 1080 px): botón de hamburguesa a la izquierda, logo al centro, idioma a la derecha */
 .menu-btn { display: none; }
 .nav-links { display: flex; align-items: center; gap: clamp(0.7rem, 2.4vw, 1.6rem); }
-@media (max-width: 700px) {
+@media (max-width: 1080px) {
   .top .wrap { grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr); gap: 0.5rem; }
   .menu-btn { display: grid; place-items: center; justify-self: start; width: 44px; height: 44px; margin-left: -10px; padding: 0; border: 0; border-radius: 12px; background: transparent; color: var(--ink); cursor: pointer; }
   .menu-btn:focus-visible { outline: 3px solid var(--accent); outline-offset: 0; }
@@ -374,3 +374,124 @@ html.at-contact .fab-mail, html.lb-open .to-top, html.lb-open .fab-mail { opacit
 
 /* Enlace para saltar al contenido: oculto del todo aunque el texto del teléfono sea grande */
 .skip:not(:focus) { top: -200px; }
+
+/* ===== Accesibilidad AAA ===== */
+/* Contraste 7:1: #784e90 queda para el logo y los detalles gráficos; botones y textos de color usan un ciruela más profundo */
+:root { --accent: #5b3470; --accent-text: #5b3470; --ink-soft: #51405b; }
+html { scroll-padding-bottom: 88px; }
+.chip[aria-pressed="true"] .n { opacity: 1; }
+.tile-info p { line-height: 1.5; color: #fff; }
+.contact p.lead { line-height: 1.5; }
+.tile-type { background: var(--accent); }
+@media (hover: none) {
+  .tile-info { background: linear-gradient(to top, rgba(47, 30, 58, 0.95) 0%, rgba(47, 30, 58, 0.86) 50%, rgba(47, 30, 58, 0) 100%); }
+}
+
+/* Controles de al menos 44 × 44 px */
+.hero-ctrl { gap: 0; padding: 2px 4px; }
+.hero-ctrl button { width: 44px; height: 44px; }
+.lang button { min-height: 44px; min-width: 44px; }
+.nav-links a { min-height: 44px; display: inline-flex; align-items: center; }
+.brand { min-height: 44px; }
+.chip { min-height: 44px; }
+.lb-nav button { min-height: 44px; }
+
+/* Foco visible sobre imágenes: anillo de color con borde blanco interior */
+.hero .slide:focus-visible, .story:focus-visible { outline: none; }
+.hero .slide:focus-visible::after, .story:focus-visible::after {
+  content: ""; position: absolute; inset: 0; z-index: 3; pointer-events: none;
+  border: 3px solid var(--accent); box-shadow: inset 0 0 0 3px #fff;
+}
+
+/* Ubicación: la sección Trabajo queda marcada en las páginas de proyecto */
+@media (min-width: 1081px) { .nav-links a[aria-current] { border-bottom-color: var(--logo); } }
+@media (max-width: 1080px) { .nav-links a[aria-current] { color: var(--accent-text); font-weight: 600; } }
+
+/* Enlaces que abren otra pestaña */
+.ext { width: 0.8em; height: 0.8em; flex: none; }
+
+/* Abreviaturas: definición disponible sin subrayado en títulos */
+abbr[title] { cursor: help; }
+h1 abbr, .tile abbr, .next abbr, .lb abbr { text-decoration: none; }
+
+/* Palabras largas en anterior / siguiente */
+.next .t, .lb-nav .t { overflow-wrap: break-word; hyphens: auto; }
+
+/* Animaciones en video con botón de pausa */
+.anim-wrap { position: relative; }
+.anim-wrap video { display: block; width: 100%; height: auto; background: var(--paper-2); }
+.block.one.tall .anim-wrap { width: fit-content; max-width: 100%; margin-inline: auto; }
+.block.one.tall .anim-wrap video { width: auto; max-width: 100%; max-height: 100vh; }
+.anim-btn {
+  position: absolute; right: 12px; bottom: 12px; display: inline-flex; align-items: center; min-height: 44px; padding: 0 1rem;
+  border: 0; border-radius: 999px; background: var(--paper); color: var(--accent-text); font: 500 0.92rem/1 var(--f-display);
+  cursor: pointer; box-shadow: 0 4px 14px rgba(47, 30, 58, 0.22);
+}
+.anim-btn:hover { background: var(--paper-2); }
+.anim-btn:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+.anim-btn > span { display: inline-flex; align-items: center; gap: 0.45rem; }
+.anim-btn .s-play, .anim-btn.is-paused .s-pause { display: none; }
+.anim-btn.is-paused .s-play { display: inline-flex; }
+
+/* ===== Modo oscuro ===== */
+/* El tema se decide en el <head>: lo elegido con el botón o, si no hay elección, el del sistema */
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --paper: #17111c;
+  --paper-2: #221a29;
+  --ink: #f2ebf7;
+  --ink-soft: #cdbfd6;
+  --logo: #c39fdb;
+  --accent: #cfb0e4;
+  --accent-text: #d6bdea;
+  --accent-ink: #17111c;
+  --veil: rgba(17, 11, 21, 0.88);
+  --line: rgba(242, 235, 247, 0.16);
+  --ph: rgba(195, 159, 219, 0.1);
+}
+:root[data-theme="dark"] .lb-bar { border-bottom-color: var(--line); }
+:root[data-theme="dark"] .lb::backdrop { background: rgba(8, 5, 10, 0.88); }
+
+/* Autorretrato: líneas claras en modo oscuro */
+.about .portrait img.only-dark { display: none; }
+:root[data-theme="dark"] .about .portrait img.only-light { display: none; }
+:root[data-theme="dark"] .about .portrait img.only-dark { display: block; }
+
+/* Botón de tema: ícono en el encabezado (computador) y fila con interruptor dentro del menú (celular) */
+.theme-icon {
+  display: grid; place-items: center; flex: none; width: 44px; height: 44px; padding: 0;
+  border: 1px solid var(--line); border-radius: 50%; background: transparent; color: var(--ink); cursor: pointer;
+}
+.theme-icon:hover { background: var(--paper-2); }
+.theme-btn:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+.theme-icon svg { width: 20px; height: 20px; }
+.theme-icon .i-sun, :root[data-theme="dark"] .theme-icon .i-moon { display: none; }
+:root[data-theme="dark"] .theme-icon .i-sun { display: block; }
+.theme-row { display: none; }
+@media (max-width: 1080px) {
+  .theme-icon { display: none; }
+  .theme-row {
+    display: flex; align-items: center; justify-content: space-between; gap: 1rem; width: 100%; min-height: 52px; padding: 0.6rem 0;
+    border: 0; background: transparent; color: var(--ink); font: inherit; font-family: var(--f-display); font-size: 1.12rem; text-align: left; cursor: pointer;
+  }
+  .theme-row .switch { position: relative; flex: none; width: 46px; height: 28px; border-radius: 999px; border: 2px solid var(--accent); background: transparent; transition: background .2s ease; }
+  .theme-row .switch::after { content: ""; position: absolute; top: 3px; left: 3px; width: 18px; height: 18px; border-radius: 50%; background: var(--accent); transition: transform .2s ease, background .2s ease; }
+  .theme-row[aria-pressed="true"] .switch { background: var(--accent); }
+  .theme-row[aria-pressed="true"] .switch::after { transform: translateX(18px); background: var(--accent-ink); }
+}
+/* Botones flotantes con borde visible sobre el fondo oscuro */
+:root[data-theme="dark"] .to-top, :root[data-theme="dark"] .anim-btn { box-shadow: 0 0 0 1px var(--line), 0 6px 18px rgba(0, 0, 0, .4); }
+
+/* Contacto: la invitación es el título; «Contacto» queda como etiqueta de orientación */
+.contact .contact-k { margin: 0 0 -0.75rem; font-size: 0.8rem; letter-spacing: 0.14em; }
+.contact h2 { font-size: clamp(1.6rem, 1.05rem + 2.2vw, 2.6rem); line-height: 1.22; max-width: 30ch; letter-spacing: -0.02em; }
+
+/* Imagen de apertura en pantallas grandes: menos panorámica (proporción máxima 16:10) y ocupa la pantalla bajo el encabezado */
+@media (min-width: 701px) {
+  .hero .slides { height: max(320px, min(62.5vw, calc(100vh - var(--head-h)))); }
+  @supports (height: 100svh) { .hero .slides { height: max(320px, min(62.5vw, calc(100svh - var(--head-h)))); } }
+}
+
+/* Contacto en dos niveles: título corto y texto de apoyo */
+.contact h2 { font-size: var(--step-3); line-height: 1.12; max-width: 20ch; }
+.contact h2 + .lead { margin-top: -0.5rem; }

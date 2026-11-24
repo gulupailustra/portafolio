@@ -23,7 +23,7 @@
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23784e90'/%3E%3Ccircle cx='32' cy='36' r='16' fill='%23ffffff'/%3E%3Cpath d='M26 20 Q32 12 38 20' stroke='%23ffffff' stroke-width='4' fill='none' stroke-linecap='round'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Schoolbell&family=Sora:wght@500;600;700&family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700&family=Fredoka:wght@300;400;500;600&display=swap">
 <link rel="stylesheet" href="../css/styles.css">
-<script>document.documentElement.setAttribute('data-lang','es')</script>
+<script>(function (d) { d.setAttribute('data-lang', 'es'); var t = null; try { t = localStorage.getItem('gulupa-theme'); } catch (e) {} if (t !== 'light' && t !== 'dark') t = window.matchMedia && matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'; d.setAttribute('data-theme', t); })(document.documentElement)</script>
 </head>
 <body>
 <a class="skip" href="#contenido"><span data-l="es">Saltar al contenido</span><span data-l="en">Skip to content</span></a>
@@ -34,14 +34,16 @@
     <a class="logo" href="../index.html#inicio" aria-label="gulupa. Inicio"><span class="kit k-logo" aria-hidden="true"></span></a>
     <nav class="nav" aria-label="Principal">
       <div class="nav-links" id="menu">
-        <a href="../index.html#trabajo"><span data-l="es">Trabajo</span><span data-l="en">Work</span></a>
+        <a href="../index.html#trabajo" aria-current="true"><span data-l="es">Trabajo</span><span data-l="en">Work</span></a>
         <a href="../index.html#sobre-mi"><span data-l="es">Sobre mí</span><span data-l="en">About</span></a>
         <a href="../index.html#contacto"><span data-l="es">Contacto</span><span data-l="en">Contact</span></a>
+        <button type="button" class="theme-btn theme-row" aria-pressed="false"><span><span data-l="es">Modo oscuro</span><span data-l="en">Dark mode</span></span><span class="switch" aria-hidden="true"></span></button>
       </div>
       <div class="lang" role="group" aria-label="Idioma / Language">
         <button type="button" data-set="es" aria-pressed="true" lang="es">ES</button>
         <button type="button" data-set="en" aria-pressed="false" lang="en">EN</button>
       </div>
+      <button type="button" class="theme-btn theme-icon" aria-pressed="false"><span class="sr"><span data-l="es">Modo oscuro</span><span data-l="en">Dark mode</span></span><svg class="i-moon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a6.8 6.8 0 0 0 10.5 10.5z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg><svg class="i-sun" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 2.5v2.2M12 19.3v2.2M2.5 12h2.2M19.3 12h2.2M5.3 5.3l1.6 1.6M17.1 17.1l1.6 1.6M5.3 18.7l1.6-1.6M17.1 6.9l1.6-1.6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
     </nav>
   </div>
 </header>
@@ -58,7 +60,7 @@
       <p class="meta"><span><span>2023</span></span><span><span>Fundación Tierra de Paz</span></span><span><span data-l="es">Diagramación de Catalina Agredo</span><span data-l="en">Layout by Catalina Agredo</span></span></p>
       <div class="p-intro">
         <p data-l="es">Ilustración de dos guías de refuerzo escolar en matemáticas y español para estudiantes del norte del Cauca. Dos docentes acompañan al lector en un recorrido por diferentes ejercicios lúdicos y didácticos.</p><p data-l="en">Illustration of two school support guides in math and Spanish for students in northern Cauca. Two teachers guide the reader through a range of playful learning exercises.</p>
-        <div class="links"><a class="btn solid" href="https://fundaciontierradepaz.org/reforzando-el-futuro-educativo/" target="_blank" rel="noopener"><span data-l="es">Guía matemáticas</span><span data-l="en">Math guide</span></a><a class="btn solid" href="https://fundaciontierradepaz.org/aventuras-en-espanol-guia-de-refuerzo-escolar/" target="_blank" rel="noopener"><span data-l="es">Guía español</span><span data-l="en">Spanish guide</span></a></div>
+        <div class="links"><a class="btn solid" href="https://fundaciontierradepaz.org/reforzando-el-futuro-educativo/" target="_blank" rel="noopener"><span data-l="es">Guía matemáticas</span><span data-l="en">Math guide</span><svg class="ext" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M9 5h10v10M19 5L6 18" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="sr"><span data-l="es"> (abre en una pestaña nueva)</span><span data-l="en"> (opens in a new tab)</span></span></a><a class="btn solid" href="https://fundaciontierradepaz.org/aventuras-en-espanol-guia-de-refuerzo-escolar/" target="_blank" rel="noopener"><span data-l="es">Guía español</span><span data-l="en">Spanish guide</span><svg class="ext" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M9 5h10v10M19 5L6 18" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="sr"><span data-l="es"> (abre en una pestaña nueva)</span><span data-l="en"> (opens in a new tab)</span></span></a></div>
       </div>
     </div>
     

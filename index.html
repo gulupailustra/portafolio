@@ -23,7 +23,7 @@
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23784e90'/%3E%3Ccircle cx='32' cy='36' r='16' fill='%23ffffff'/%3E%3Cpath d='M26 20 Q32 12 38 20' stroke='%23ffffff' stroke-width='4' fill='none' stroke-linecap='round'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Schoolbell&family=Sora:wght@500;600;700&family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700&family=Fredoka:wght@300;400;500;600&display=swap">
 <link rel="stylesheet" href="css/styles.css">
-<script>document.documentElement.setAttribute('data-lang','es')</script>
+<script>(function (d) { d.setAttribute('data-lang', 'es'); var t = null; try { t = localStorage.getItem('gulupa-theme'); } catch (e) {} if (t !== 'light' && t !== 'dark') t = window.matchMedia && matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'; d.setAttribute('data-theme', t); })(document.documentElement)</script>
 </head>
 <body>
 <a class="skip" href="#contenido"><span data-l="es">Saltar al contenido</span><span data-l="en">Skip to content</span></a>
@@ -37,11 +37,13 @@
         <a href="#trabajo"><span data-l="es">Trabajo</span><span data-l="en">Work</span></a>
         <a href="#sobre-mi"><span data-l="es">Sobre mí</span><span data-l="en">About</span></a>
         <a href="#contacto"><span data-l="es">Contacto</span><span data-l="en">Contact</span></a>
+        <button type="button" class="theme-btn theme-row" aria-pressed="false"><span><span data-l="es">Modo oscuro</span><span data-l="en">Dark mode</span></span><span class="switch" aria-hidden="true"></span></button>
       </div>
       <div class="lang" role="group" aria-label="Idioma / Language">
         <button type="button" data-set="es" aria-pressed="true" lang="es">ES</button>
         <button type="button" data-set="en" aria-pressed="false" lang="en">EN</button>
       </div>
+      <button type="button" class="theme-btn theme-icon" aria-pressed="false"><span class="sr"><span data-l="es">Modo oscuro</span><span data-l="en">Dark mode</span></span><svg class="i-moon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a6.8 6.8 0 0 0 10.5 10.5z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg><svg class="i-sun" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 2.5v2.2M12 19.3v2.2M2.5 12h2.2M19.3 12h2.2M5.3 5.3l1.6 1.6M17.1 17.1l1.6 1.6M5.3 18.7l1.6-1.6M17.1 6.9l1.6-1.6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
     </nav>
   </div>
 </header>
@@ -62,8 +64,8 @@
         <img src="img/hero-andino.webp" srcset="img/hero/andino-800.webp 800w, img/hero-andino.webp 1400w" sizes="100vw" width="1400" height="933" alt="La caja del juego Al paso del Andino sobre la hierba, junto a frailejones." data-alt-es="La caja del juego Al paso del Andino sobre la hierba, junto a frailejones." data-alt-en="The Al paso del Andino game box on the grass, next to frailejón plants." loading="lazy" decoding="async" data-ph>
         <span class="hcap"><span>Al paso del Andino</span><span class="y">2023</span></span>
       </a>
-      <a class="slide" href="trabajo/masculinidades-usme.html" style="--pos:50% 20%" role="group" aria-roledescription="diapositiva" aria-label="4 / 4" aria-hidden="true" tabindex="-1">
-        <img src="img/masculinidades-usme/bebe.webp" srcset="img/masculinidades-usme/bebe-800.webp 800w, img/masculinidades-usme/bebe-1400.webp 1400w, img/masculinidades-usme/bebe.webp 1800w" sizes="100vw" width="1800" height="1224" alt="Ilustración de un hombre que abraza a un bebé dormido, sobre fondo amarillo." data-alt-es="Ilustración de un hombre que abraza a un bebé dormido, sobre fondo amarillo." data-alt-en="Illustration of a man holding a sleeping baby, on a yellow background." loading="lazy" decoding="async" data-ph>
+      <a class="slide" href="trabajo/masculinidades-usme.html" style="--pos:50% 45%" role="group" aria-roledescription="diapositiva" aria-label="4 / 4" aria-hidden="true" tabindex="-1">
+        <img src="img/hero-masculinidades.webp" srcset="img/hero/masculinidades-800.webp 800w, img/hero/masculinidades-1400.webp 1400w, img/hero-masculinidades.webp 1800w" sizes="100vw" width="1800" height="1189" alt="Collage de ilustraciones y fotografías: un hombre sonriente con gorra, un campesino que trabaja la tierra con un azadón, un hombre que abraza a un bebé, manos que sostienen una totuma, una correa roja y paisajes rurales." data-alt-es="Collage de ilustraciones y fotografías: un hombre sonriente con gorra, un campesino que trabaja la tierra con un azadón, un hombre que abraza a un bebé, manos que sostienen una totuma, una correa roja y paisajes rurales." data-alt-en="Collage of illustrations and photographs: a smiling man in a cap, a farmer working the land with a hoe, a man holding a baby, hands holding a gourd bowl, a red belt and rural landscapes." loading="lazy" decoding="async" data-ph>
         <span class="hcap"><span data-l="es">Masculinidades rurales</span><span data-l="en">Rural masculinities</span><span class="y">2024</span></span>
       </a>
     </div>
@@ -100,8 +102,8 @@
 <li data-cats="genero">
   <a class="tile" href="trabajo/sin-violencia-lgbtiq.html" style="--pos:50% 50%;--z:1">
     <img src="img/sin-violencia-lgbtiq/galeria.webp" srcset="img/sin-violencia-lgbtiq/galeria-800.webp 800w, img/sin-violencia-lgbtiq/galeria.webp 1200w" sizes="(max-width: 700px) 50vw, 25vw" width="800" height="1000" alt="" data-alt-es="" data-alt-en="" decoding="async" data-ph>
-    <div class="tile-type" aria-hidden="true"><span class="kit k-logo"></span><strong>Sin Violencia LGBTIQ+</strong></div>
-    <div class="tile-info"><h2><span>Sin Violencia LGBTIQ+</span></h2><p>2025 · <span data-l="es">Identidad visual e ilustración</span><span data-l="en">Visual identity and illustration</span></p></div>
+    <div class="tile-type" aria-hidden="true"><span class="kit k-logo"></span><strong>Sin Violencia <abbr title="lesbianas, gais, bisexuales, trans, intersexuales, queer y más identidades" data-title-es="lesbianas, gais, bisexuales, trans, intersexuales, queer y más identidades" data-title-en="lesbian, gay, bisexual, trans, intersex, queer and more identities">LGBTIQ+</abbr></strong></div>
+    <div class="tile-info"><h2><span>Sin Violencia <abbr title="lesbianas, gais, bisexuales, trans, intersexuales, queer y más identidades" data-title-es="lesbianas, gais, bisexuales, trans, intersexuales, queer y más identidades" data-title-en="lesbian, gay, bisexual, trans, intersex, queer and more identities">LGBTIQ+</abbr></span></h2><p>2025 · <span data-l="es">Identidad visual e ilustración</span><span data-l="en">Visual identity and illustration</span></p></div>
   </a>
 </li>
 <li data-cats="otros">
@@ -172,10 +174,10 @@
 
 <section class="about" id="sobre-mi" aria-labelledby="sobre-mi-t">
   <div class="wrap">
-    <figure class="portrait"><img src="img/retrato.png" width="444" height="410" alt="Autorretrato ilustrado: un rostro azul sonriente, dibujado con líneas azul oscuro, con los ojos cerrados, el pelo en una sola línea y un arete." data-alt-es="Autorretrato ilustrado: un rostro azul sonriente, dibujado con líneas azul oscuro, con los ojos cerrados, el pelo en una sola línea y un arete." data-alt-en="Illustrated self-portrait: a smiling blue face with closed eyes, hair drawn as a single line, and an earring." loading="lazy" decoding="async"></figure>
+    <figure class="portrait"><img class="only-light" src="img/retrato.png" width="444" height="410" alt="Autorretrato ilustrado: un rostro lila sonriente, dibujado con líneas ciruela oscuro, con los ojos cerrados, el pelo en una sola línea y un arete." data-alt-es="Autorretrato ilustrado: un rostro lila sonriente, dibujado con líneas ciruela oscuro, con los ojos cerrados, el pelo en una sola línea y un arete." data-alt-en="Illustrated self-portrait: a smiling lilac face drawn with dark plum lines, with closed eyes, hair drawn as a single line, and an earring." loading="lazy" decoding="async"><img class="only-dark" src="img/retrato-oscuro.png" width="444" height="410" alt="Autorretrato ilustrado: un rostro lila muy claro, casi blanco, sonriente, dibujado con líneas lila, con los ojos cerrados, el pelo en una sola línea y un arete." data-alt-es="Autorretrato ilustrado: un rostro lila sonriente, dibujado con líneas claras, con los ojos cerrados, el pelo en una sola línea y un arete." data-alt-en="Illustrated self-portrait: a smiling, almost white, pale lilac face drawn with lilac lines, with closed eyes, hair drawn as a single line, and an earring." loading="lazy" decoding="async"></figure>
     <div class="about-text">
       <h2 id="sobre-mi-t"><span data-l="es">Sobre mí</span><span data-l="en">About</span></h2>
-      <p data-l="es">Diseñador e ilustrador con cinco años de experiencia acompañando a diversas organizaciones e instituciones. Escucha lo que las personas quieren contar y colabora para hacerlo realidad desde el diseño y la producción. A partir del diálogo, busca constantemente un equilibrio entre lo práctico y lo estético, fortaleciendo cada idea desde una mirada técnica y creativa.</p><p data-l="en">Designer and illustrator with five years of experience working alongside a wide range of organizations and institutions. He listens to what people want to tell and helps bring it to life through design and production. Through dialogue, he constantly seeks a balance between the practical and the aesthetic, strengthening each idea from a technical and creative perspective.</p>
+      <p data-l="es">Diseñador e ilustrador con cinco años de experiencia acompañando a diversas organizaciones e instituciones. Escucha lo que las personas quieren contar y colabora para hacerlo realidad. A partir del diálogo, busca constantemente un equilibrio entre lo práctico y lo estético, fortaleciendo cada idea desde una mirada técnica y creativa.</p><p data-l="en">Designer and illustrator with five years of experience working alongside a wide range of organizations and institutions. He listens to what people want to tell and helps bring it to life. Through dialogue, he constantly seeks a balance between the practical and the aesthetic, strengthening each idea from a technical and creative perspective.</p>
       <p data-l="es">Presta servicios en el diseño y desarrollo de productos editoriales, pedagógicos y lúdicos, así como en el diseño de sistemas de identidad visual completos (logos, empaques, estrategias de contenido, entre otros). Trabaja con metodologías que van desde las prácticas colectivas hasta el trabajo personalizado, y aborda los proyectos desde una perspectiva crítica y consciente.</p><p data-l="en">He offers design and development of editorial, educational and game-based products, as well as complete visual identity systems (logos, packaging, content strategies and more). His methods range from collective practices to one-on-one work, and he approaches each project from a critical and conscious perspective.</p>
     </div>
   </div>
@@ -183,16 +185,17 @@
 
 <section class="contact" id="contacto" aria-labelledby="contacto-t">
   <div class="wrap">
-    <h2 id="contacto-t"><span data-l="es">Contacto</span><span data-l="en">Contact</span></h2>
-    <p class="lead" data-l="es">Si tienes un proyecto en mente y crees que podemos hacer algo juntos, escríbeme.</p><p class="lead" data-l="en">If you have a project in mind and think we could do something together, write to me.</p>
+    <p class="label contact-k" aria-hidden="true"><span data-l="es">Contacto</span><span data-l="en">Contact</span></p>
+    <h2 id="contacto-t"><span class="sr"><span data-l="es">Contacto: </span><span data-l="en">Contact: </span></span><span data-l="es">Me gustaría conocer tu proyecto</span><span data-l="en">I’d love to hear about your project</span></h2>
+    <p class="lead" data-l="es">Si crees que podemos hacer algo juntos, escríbeme.</p><p class="lead" data-l="en">If you think we could do something together, write to me.</p>
     <div class="mail-row">
       <a class="mail" href="mailto:fabiancarvajal0@gmail.com">fabiancarvajal0@gmail.com</a>
       <button class="btn" type="button" data-copy="fabiancarvajal0@gmail.com"><span data-l="es">Copiar correo</span><span data-l="en">Copy email</span></button>
     </div>
     <p class="status" id="copy-status" role="status" aria-live="polite"></p>
     <div class="socials">
-      <a class="btn solid" href="https://www.instagram.com/fabigulupa/" target="_blank" rel="noopener" aria-label="Instagram @fabigulupa">Instagram</a>
-      <a class="btn" href="https://www.behance.net/fabigulupa" target="_blank" rel="noopener">Behance</a>
+      <a class="btn solid" href="https://www.instagram.com/gulupaaaa/" target="_blank" rel="noopener" aria-label="Instagram @gulupaaaa (abre en una pestaña nueva)" data-aria-es="Instagram @gulupaaaa (abre en una pestaña nueva)" data-aria-en="Instagram @gulupaaaa (opens in a new tab)">Instagram<svg class="ext" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M9 5h10v10M19 5L6 18" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+      <a class="btn" href="https://www.behance.net/fabigulupa" target="_blank" rel="noopener">Behance<svg class="ext" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M9 5h10v10M19 5L6 18" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="sr"><span data-l="es"> (abre en una pestaña nueva)</span><span data-l="en"> (opens in a new tab)</span></span></a>
     </div>
   </div>
 </section>
