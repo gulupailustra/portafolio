@@ -270,4 +270,25 @@
     if (img.complete && img.naturalWidth === 0) markEmpty(img);
     img.addEventListener("error", function () { markEmpty(img); });
   });
+  // Menú de celular
+  var menuBtn = document.querySelector(".menu-btn");
+  if (menuBtn) {
+    var setMenu = function (open) {
+      root.classList.toggle("menu-open", open);
+      menuBtn.setAttribute("aria-expanded", String(open));
+    };
+    menuBtn.addEventListener("click", function () { setMenu(!root.classList.contains("menu-open")); });
+    document.querySelectorAll(".nav-links a").forEach(function (a) {
+      a.addEventListener("click", function () { setMenu(false); });
+    });
+    document.addEventListener("click", function (e) {
+      if (root.classList.contains("menu-open") && !e.target.closest(".top")) setMenu(false);
+    });
+    document.addEventListener("keydown", function (e) {
+      if (e.key === "Escape" && root.classList.contains("menu-open")) { setMenu(false); menuBtn.focus(); }
+    });
+    var wide = window.matchMedia("(min-width: 701px)");
+    var onWide = function (e) { if (e.matches) setMenu(false); };
+    if (wide.addEventListener) wide.addEventListener("change", onWide); else if (wide.addListener) wide.addListener(onWide);
+  }
 })();

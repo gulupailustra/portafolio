@@ -20,7 +20,7 @@
 <meta property="og:image:height" content="630">
 
 <meta name="twitter:card" content="summary_large_image">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230078bf'/%3E%3Ccircle cx='32' cy='36' r='16' fill='%23ffffff'/%3E%3Cpath d='M26 20 Q32 12 38 20' stroke='%23ffffff' stroke-width='4' fill='none' stroke-linecap='round'/%3E%3C/svg%3E">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23784e90'/%3E%3Ccircle cx='32' cy='36' r='16' fill='%23ffffff'/%3E%3Cpath d='M26 20 Q32 12 38 20' stroke='%23ffffff' stroke-width='4' fill='none' stroke-linecap='round'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Schoolbell&family=Sora:wght@500;600;700&family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700&family=Fredoka:wght@300;400;500;600&display=swap">
 <link rel="stylesheet" href="css/styles.css">
 <script>document.documentElement.setAttribute('data-lang','es')</script>
@@ -29,12 +29,15 @@
 <a class="skip" href="#contenido"><span data-l="es">Saltar al contenido</span><span data-l="en">Skip to content</span></a>
 <header class="top">
   <div class="wrap">
+    <button type="button" class="menu-btn" aria-expanded="false" aria-controls="menu"><span class="sr"><span data-l="es">Menú</span><span data-l="en">Menu</span></span><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" focusable="false"><path class="i-open" d="M4 7h16M4 12h16M4 17h16"/><path class="i-close" d="M6 6l12 12M18 6L6 18"/></svg></button>
     <a class="brand" href="#inicio">Fabián Carvajal</a>
     <a class="logo" href="#inicio" aria-label="gulupa. Inicio"><span class="kit k-logo" aria-hidden="true"></span></a>
     <nav class="nav" aria-label="Principal">
-      <a href="#trabajo"><span data-l="es">Trabajo</span><span data-l="en">Work</span></a>
-      <a href="#sobre-mi"><span data-l="es">Sobre mí</span><span data-l="en">About</span></a>
-      <a href="#contacto"><span data-l="es">Contacto</span><span data-l="en">Contact</span></a>
+      <div class="nav-links" id="menu">
+        <a href="#trabajo"><span data-l="es">Trabajo</span><span data-l="en">Work</span></a>
+        <a href="#sobre-mi"><span data-l="es">Sobre mí</span><span data-l="en">About</span></a>
+        <a href="#contacto"><span data-l="es">Contacto</span><span data-l="en">Contact</span></a>
+      </div>
       <div class="lang" role="group" aria-label="Idioma / Language">
         <button type="button" data-set="es" aria-pressed="true" lang="es">ES</button>
         <button type="button" data-set="en" aria-pressed="false" lang="en">EN</button>
@@ -49,7 +52,7 @@
     <div class="slides">
       <a class="slide is-active" href="trabajo/aventuras.html" style="--pos:50% 45%" role="group" aria-roledescription="diapositiva" aria-label="1 / 4">
         <img src="img/hero-aventuras.webp" srcset="img/hero/aventuras-800.webp 800w, img/hero/aventuras-1400.webp 1400w, img/hero-aventuras.webp 2400w" sizes="100vw" width="2400" height="1600" alt="Ilustración de dos docentes que conversan; entre ellos, un laberinto de líneas." data-alt-es="Ilustración de dos docentes que conversan; entre ellos, un laberinto de líneas." data-alt-en="Illustration of two teachers talking, with a maze of lines between them." decoding="async" data-ph fetchpriority="high">
-        <span class="hcap"><span>Aventuras matemáticas y en español</span><span class="y">2023</span></span>
+        <span class="hcap"><span>Aventuras matemáticas</span><span class="y">2023</span></span>
       </a>
       <a class="slide" href="trabajo/relatos-pal-desolvido.html" style="--pos:50% 40%" role="group" aria-roledescription="diapositiva" aria-label="2 / 4" aria-hidden="true" tabindex="-1">
         <img src="img/hero-relatos.webp" srcset="img/hero/relatos-800.webp 800w, img/hero/relatos-1400.webp 1400w, img/hero-relatos.webp 2400w" sizes="100vw" width="2400" height="1600" alt="Ilustración de un grupo de jóvenes que se saluda en una calle de barrio, al atardecer." data-alt-es="Ilustración de un grupo de jóvenes que se saluda en una calle de barrio, al atardecer." data-alt-en="Illustration of a group of young people greeting each other on a neighborhood street at dusk." loading="lazy" decoding="async" data-ph>
