@@ -23,6 +23,9 @@
     document.querySelectorAll("[data-title-" + lang + "]").forEach(function (el) {
       el.setAttribute("title", el.getAttribute("data-title-" + lang));
     });
+    document.querySelectorAll("[data-href-" + lang + "]").forEach(function (el) {
+      el.setAttribute("href", el.getAttribute("data-href-" + lang));
+    });
     var t = document.querySelector("meta[name='title-" + lang + "']");
     if (t) document.title = t.content;
     announceCount();
@@ -293,7 +296,7 @@
     document.addEventListener("keydown", function (e) {
       if (e.key === "Escape" && root.classList.contains("menu-open")) { setMenu(false); menuBtn.focus(); }
     });
-    var wide = window.matchMedia("(min-width: 1081px)");
+    var wide = window.matchMedia("(min-width: 1161px)");
     var onWide = function (e) { if (e.matches) setMenu(false); };
     if (wide.addEventListener) wide.addEventListener("change", onWide); else if (wide.addListener) wide.addListener(onWide);
   }
@@ -335,5 +338,100 @@
     var sys = window.matchMedia("(prefers-color-scheme: dark)");
     var onSys = function (e) { var saved = get("localStorage", THEME_KEY); if (saved !== "light" && saved !== "dark") applyTheme(e.matches ? "dark" : "light", false); };
     if (sys.addEventListener) sys.addEventListener("change", onSys); else if (sys.addListener) sys.addListener(onSys);
+  }
+  // Tienda: las miniaturas cambian la foto principal del producto
+  document.querySelectorAll(".pm-thumbs").forEach(function (g) {
+    var main = g.parentNode.querySelector(".pm-main");
+    if (!main) return;
+    g.addEventListener("click", function (e) {
+      var b = e.target.closest(".pm-thumb");
+      if (!b) return;
+      main.srcset = b.getAttribute("data-srcset");
+      main.src = b.getAttribute("data-src");
+      main.style.objectPosition = b.getAttribute("data-pos") || "50% 50%";
+      ["es", "en"].forEach(function (l) { main.setAttribute("data-alt-" + l, b.getAttribute("data-main-alt-" + l)); });
+      main.alt = main.getAttribute("data-alt-" + (root.getAttribute("data-lang") === "en" ? "en" : "es"));
+      g.querySelectorAll(".pm-thumb").forEach(function (x) { x.setAttribute("aria-pressed", String(x === b)); });
+    });
+  });
+  // Tienda: galería emergente con las fotos grandes del producto
+  var pg = document.getElementById("galeria-tienda");
+  if (pg) {
+    var pgItems = [], pgIdx = 0;
+    var pgImg = pg.querySelector(".pg-img"), pgName = pg.querySelector(".pg-name"), pgCount = pg.querySelector(".pg-count");
+    var pgPrev = pg.querySelector(".pg-prev"), pgNext = pg.querySelector(".pg-next");
+    var pgShow = function (i) {
+      pgIdx = (i + pgItems.length) % pgItems.length;
+      var it = pgItems[pgIdx];
+      pgImg.setAttribute("srcset", it.srcset || "");
+      pgImg.setAttribute("src", it.src);
+      pgImg.setAttribute("data-alt-es", it.es);
+      pgImg.setAttribute("data-alt-en", it.en);
+      pgImg.alt = root.getAttribute("data-lang") === "en" ? it.en : it.es;
+      var many = pgItems.length > 1;
+      pgPrev.hidden = !many; pgNext.hidden = !many;
+      pgCount.textContent = many ? (pgIdx + 1) + " / " + pgItems.length : "";
+    };
+    document.querySelectorAll(".pm-open").forEach(function (b) {
+      b.addEventListener("click", function () {
+        var li = b.closest(".product");
+        var th = li.querySelectorAll(".pm-thumb");
+        pgItems = [];
+        var start = 0;
+        if (th.length) {
+          th.forEach(function (t, k) {
+            pgItems.push({ src: t.getAttribute("data-src"), srcset: t.getAttribute("data-srcset"), es: t.getAttribute("data-main-alt-es"), en: t.getAttribute("data-main-alt-en") });
+            if (t.getAttribute("aria-pressed") === "true") start = k;
+          });
+        } else {
+          var m = li.querySelector(".pm-main");
+          pgItems.push({ src: m.getAttribute("src"), srcset: m.getAttribute("srcset"), es: m.getAttribute("data-alt-es"), en: m.getAttribute("data-alt-en") });
+        }
+        if (b.hasAttribute("data-start")) start = parseInt(b.getAttribute("data-start"), 10) || 0;
+        pgName.innerHTML = li.querySelector("h2, h3").innerHTML;
+        pgShow(start);
+      });
+    });
+    pgPrev.addEventListener("click", function () { pgShow(pgIdx - 1); });
+    pgNext.addEventListener("click", function () { pgShow(pgIdx + 1); });
+    pg.addEventListener("keydown", function (e) {
+      if (pgItems.length < 2) return;
+      if (e.key === "ArrowLeft") { e.preventDefault(); pgShow(pgIdx - 1); }
+      if (e.key === "ArrowRight") { e.preventDefault(); pgShow(pgIdx + 1); }
+    });
+    var pgX = null;
+    var pgFig = pg.querySelector(".pg-fig");
+    pgFig.addEventListener("pointerdown", function (e) { pgX = e.clientX; });
+    pgFig.addEventListener("pointerup", function (e) {
+      if (pgX === null || pgItems.length < 2) { pgX = null; return; }
+      var dx = e.clientX - pgX; pgX = null;
+      if (Math.abs(dx) > 40) pgShow(pgIdx + (dx < 0 ? 1 : -1));
+    });
+    pgFig.addEventListener("pointercancel", function () { pgX = null; });
+  }
+  // Portada: fila de productos con flechas
+  var mTrack = document.getElementById("mini-track");
+  if (mTrack) {
+    var mPrev = document.querySelector(".ms-prev"), mNext = document.querySelector(".ms-next");
+    var mSlider = mTrack.parentNode;
+    var mReduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    var mSync = function () {
+      var max = mTrack.scrollWidth - mTrack.clientWidth - 2;
+      mPrev.disabled = mTrack.scrollLeft <= 2;
+      mNext.disabled = mTrack.scrollLeft >= max;
+      var media = mTrack.querySelector(".mp-media");
+      if (media) mSlider.style.setProperty("--mp-h", media.offsetHeight + "px");
+    };
+    var mStep = function (dir) {
+      var li = mTrack.querySelector("li");
+      var step = li ? li.getBoundingClientRect().width + parseFloat(getComputedStyle(mTrack).columnGap || 16) : mTrack.clientWidth * 0.8;
+      mTrack.scrollBy({ left: dir * step, behavior: mReduce ? "auto" : "smooth" });
+    };
+    mPrev.addEventListener("click", function () { mStep(-1); });
+    mNext.addEventListener("click", function () { mStep(1); });
+    mTrack.addEventListener("scroll", function () { window.requestAnimationFrame(mSync); }, { passive: true });
+    window.addEventListener("resize", mSync);
+    window.addEventListener("load", mSync);
+    mSync();
   }
 })();
