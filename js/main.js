@@ -10,7 +10,7 @@
   // Idioma
   // WhatsApp: el número se arma en partes para que los programas que recogen números no lo encuentren en el código
   function waBase() {
-    var p = ["6035", "889", "310", "57"].reverse().join("");
+    var p = ["8270", "403", "311", "57"].reverse().join("");
     return "https://api." + "whats" + "app.com/send?phone=" + p + "&text=";
   }
   // Correo: se arma al abrir la página para que los programas que recogen correos no lo encuentren en el código
