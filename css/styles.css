@@ -634,3 +634,12 @@ h1 abbr, .tile abbr, .next abbr, .lb abbr { text-decoration: none; }
 .price-list { list-style: none; margin: auto 0 0; padding: 0.4rem 0 0; display: grid; gap: 0.2rem; }
 .price-list li { display: flex; justify-content: space-between; gap: 1rem; max-width: 18rem; color: var(--ink-soft); }
 .price-list strong { font-family: var(--f-title); font-weight: 600; font-size: var(--step-1); color: var(--ink); }
+
+/* Franja de texto sobre el carrusel de la portada */
+:root { --band-h: 52px; }
+.tagline { margin: 0; min-height: var(--band-h); display: flex; align-items: center; justify-content: center; padding: 0.5rem var(--gutter); text-align: center; font-family: var(--f-display); font-weight: 500; font-size: clamp(0.85rem, 0.78rem + 0.3vw, 1rem); letter-spacing: 0.22em; text-transform: uppercase; color: var(--accent-text); background: var(--paper); border-bottom: 1px solid var(--line); }
+@media (min-width: 701px) {
+  .hero .slides { height: max(320px, min(62.5vw, calc(100vh - var(--head-h) - var(--band-h)))); }
+  @supports (height: 100svh) { .hero .slides { height: max(320px, min(62.5vw, calc(100svh - var(--head-h) - var(--band-h)))); } }
+}
+@media (max-width: 700px) { :root { --band-h: 44px; } .tagline { letter-spacing: 0.18em; } }
