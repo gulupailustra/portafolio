@@ -8,6 +8,21 @@
   function put(store, k, v) { try { window[store].setItem(k, v); } catch (e) {} }
 
   // Idioma
+  // WhatsApp: el número se arma en partes para que los programas que recogen números no lo encuentren en el código
+  function waBase() {
+    var p = ["6035", "889", "310", "57"].reverse().join("");
+    return "https://api." + "whats" + "app.com/send?phone=" + p + "&text=";
+  }
+  // Correo: se arma al abrir la página para que los programas que recogen correos no lo encuentren en el código
+  function mailAddr() {
+    return ["carvajal0", "fabian"].reverse().join("") + String.fromCharCode(64) + "gmail" + "." + "com";
+  }
+  document.querySelectorAll("[data-mail]").forEach(function (el) {
+    var a = mailAddr();
+    if (el.tagName === "A") el.setAttribute("href", "mai" + "lto:" + a);
+    if (el.hasAttribute("data-copy")) el.setAttribute("data-copy", a);
+    if (el.classList.contains("mail")) el.textContent = a;
+  });
   function setLang(lang) {
     root.setAttribute("data-lang", lang);
     root.setAttribute("lang", lang);
@@ -25,6 +40,9 @@
     });
     document.querySelectorAll("[data-href-" + lang + "]").forEach(function (el) {
       el.setAttribute("href", el.getAttribute("data-href-" + lang));
+    });
+    document.querySelectorAll("[data-wa-" + lang + "]").forEach(function (el) {
+      el.setAttribute("href", waBase() + el.getAttribute("data-wa-" + lang));
     });
     var t = document.querySelector("meta[name='title-" + lang + "']");
     if (t) document.title = t.content;
