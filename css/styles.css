@@ -643,3 +643,21 @@ h1 abbr, .tile abbr, .next abbr, .lb abbr { text-decoration: none; }
   @supports (height: 100svh) { .hero .slides { height: max(320px, min(62.5vw, calc(100svh - var(--head-h) - var(--band-h)))); } }
 }
 @media (max-width: 700px) { :root { --band-h: 44px; } .tagline { letter-spacing: 0.18em; } }
+
+/* Página 404 */
+.nf { min-height: calc(100vh - var(--head-h) - 140px); display: grid; place-items: center; text-align: center; padding-block: clamp(48px, 8vw, 96px); }
+.nf .wrap { display: grid; justify-items: center; gap: 1rem; }
+.nf-code { margin: 0; font-family: var(--f-title); font-weight: 700; font-size: clamp(5rem, 3rem + 10vw, 10rem); line-height: 1; color: var(--logo); letter-spacing: -0.04em; }
+.nf h1 { font-size: var(--step-3); }
+.nf .lead { max-width: 40ch; color: var(--ink-soft); line-height: 1.5; }
+.nf-actions { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.75rem; margin-top: 0.5rem; }
+.nf-actions .btn { min-height: 44px; }
+/* Condiciones de compra */
+.legal .wrap { max-width: 72ch; padding-block: clamp(32px, 6vw, 72px); }
+.legal h1 { font-size: var(--step-3); margin: 1rem 0 0.8rem; }
+.legal .lead { color: var(--ink-soft); line-height: 1.5; font-size: var(--step-1); }
+.legal section { margin-top: clamp(28px, 4vw, 40px); }
+.legal h2 { font-size: var(--step-2); margin-bottom: 0.6rem; }
+.legal section p { line-height: 1.6; margin: 0 0 0.8rem; }
+.legal-date { margin-top: 2.5rem; color: var(--ink-soft); font-size: var(--step--1); }
+.how-note a { color: var(--accent-text); text-decoration: underline; text-underline-offset: 3px; }
